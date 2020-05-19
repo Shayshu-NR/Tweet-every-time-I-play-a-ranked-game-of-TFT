@@ -22,10 +22,18 @@ def main():
         puuid = riotAPI.get_puuid(API_KEY, USER_NAME)
         match_ids = riotAPI.get_match_ids(API_KEY, puuid)
 
-        #database.new_entry(USER_NAME, puuid, match_ids[0])
+        print(match_ids)
 
-        if database.check_new_entry(match_ids[0], connection) : 
-                print('found')
+        for i in range(len(match_ids)):
+                #Get match data 
+                match_data = riotAPI.get_match_data(API_KEY, match_ids[i])
+                sql_data = riotAPI.get_sql_data(match_data, puuid)
+
+                #Check if the data is already in the database
+                if database.check_new_entry(match_ids[i], connection) :
+                        database.new_entry(USER_NAME, puuid, match_ids[i], sql_data)
+
+        return
 #~~~~~~~~~~~~~~~~~~~
 
 main()

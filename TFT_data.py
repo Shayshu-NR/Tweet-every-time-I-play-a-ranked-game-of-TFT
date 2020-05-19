@@ -9,7 +9,7 @@ import requests
 #~~~~~~~~~~~~~~~~~~~    
 
 #~~~~~Global Variable~~~~~
-API_KEY = '?api_key=RGAPI-65c978e9-fc20-47df-9621-0a34c2826471'
+API_KEY = '?api_key=RGAPI-5c6959a1-3ab3-4542-ae9f-81376fc6eff5'
 USER_NAME = 'DotsXL'
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -74,9 +74,11 @@ class mysql_database():
                 print(row[2])
 
             if not records :
-                return False
-            else :
+                print('Not yet in the database!')
                 return True
+            else :
+                print('Already in the database...')
+                return False
 
         except mysql.connector.Error as error :
             print("Failed to read {}".format(error))
@@ -99,8 +101,8 @@ class mysql_database():
             connection.commit()
 
             
-            sql_query = """INSERT INTO match_data VALUES(%s, %d, %d, %s, %d)"""
-            dataTuple = ()
+            sql_query = """INSERT INTO match_data (Match_ID, End_Level, Placement, Primary_Trait, Total_Damage) VALUES(%s, %s, %s, %s, %s)"""
+            dataTuple = (match_id, match_data[0], match_data[1], match_data[2], match_data[3])
             cursor.execute(sql_query, dataTuple)
             connection.commit()
 
@@ -140,7 +142,34 @@ class TFTData():
         return responseJson
     
     #Get the usable data to insert into the sql database
-    def get_sql_data(self, match_data):
-        
-#~~~~~~~~~~~~~~~~~~~
+    def get_sql_data(self, match_data, puuid):
+        useful_data = [0, 0, 'None', 0]
 
+        for i in range(len(match_data['info']['participants'])):
+            if match_data['info']['participants'][i]['puuid'] == puuid :
+                user_data = match_data['info']['participants'][i]
+
+                #Store the end level
+                useful_data[0] = (user_data['level'])
+
+                #Store placement
+                useful_data[1] = (user_data['placement'])
+
+                #Store primary trait
+                primary_trait = 'none'
+                num_units = 0
+                for j in range(len(user_data['traits'])):
+                    if user_data['traits'][j]['num_units'] > num_units:
+                        primary_trait = user_data['traits'][j]['name']
+                        num_units = user_data['traits'][j]['num_units']
+                
+                useful_data[2] = primary_trait
+
+                #Store total damage
+                useful_data[3] = (user_data['total_damage_to_players'])
+
+                return useful_data
+        
+        return useful_data
+
+#~~~~~~~~~~~~~~~~~~~
