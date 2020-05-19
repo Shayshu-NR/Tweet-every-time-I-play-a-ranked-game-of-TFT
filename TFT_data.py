@@ -5,7 +5,7 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 import json
-import urllib.request
+import requests
 #~~~~~~~~~~~~~~~~~~~    
 
 #~~~~~Global Variable~~~~~
@@ -20,7 +20,7 @@ class mysql_database():
         try:
             connection = mysql.connector.connect(host='localhost',
                                 database ='sql_match_history',
-                                user ='shayshu',
+                                user ='root',
                                 password ='datalog')
             
             if connection.is_connected():
@@ -63,7 +63,7 @@ class mysql_database():
     def check_new_entry(self, match_id, connection):
         try:
             cursor  = connection.cursor()
-            sql_query = """select * from match_history where Match_History_ID = %s"""
+            sql_query = """select * from match_history where Match_History_ID in ('%s')"""
             cursor.execute(sql_query, (match_id))
             records = cursor.fetchall()
 
@@ -73,7 +73,7 @@ class mysql_database():
                 print(row[1])
                 print(row[2])
 
-            if records > 0 :
+            if not records :
                 return False
             else :
                 return True
@@ -87,7 +87,7 @@ class mysql_database():
         try:
             connection = mysql.connector.connect(host='localhost',
                                 database='sql_match_history',
-                                user='shayshu',
+                                user='root',
                                 password='datalog')
             cursor = connection.cursor()
             sql_query = """insert into match_history (Summoner_Name, Puuid, Match_History_ID) VALUES(%s, %s, %s)"""

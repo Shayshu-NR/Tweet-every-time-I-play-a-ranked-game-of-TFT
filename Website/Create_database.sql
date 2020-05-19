@@ -12,3 +12,11 @@ CREATE TABLE `Match_History` (
   `Match_History_ID` varchar(14) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Match_Data` (
+  `Match_Number` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `Match_History_ID` varchar(14) NOT NULL,
+  PRIMARY KEY (`Match_Number`),
+  KEY `FK_Match_History_IDX` (`Match_History_ID`),
+  CONSTRAINT `FK_Match_History` FOREIGN KEY (`Match_History_ID`) REFERENCES `Match_History` (`Match_History_ID`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
