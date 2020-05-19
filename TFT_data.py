@@ -83,18 +83,28 @@ class mysql_database():
             return False
     
     #Add a new entry to the mysql database
-    def new_entry(self, userName, puuid, match_id):
+    def new_entry(self, userName, puuid, match_id, match_data):
         try:
             connection = mysql.connector.connect(host='localhost',
                                 database='sql_match_history',
                                 user='root',
                                 password='datalog')
+
             cursor = connection.cursor()
-            sql_query = """insert into match_history (Summoner_Name, Puuid, Match_History_ID) VALUES(%s, %s, %s)"""
+
+            #Insert the match history data
+            sql_query = """INSERT INTO match_history (Summoner_Name, Puuid, Match_History_ID) VALUES(%s, %s, %s)"""
             dataTuple = (userName, puuid, match_id)
             cursor.execute(sql_query, dataTuple)
             connection.commit()
 
+            
+            sql_query = """INSERT INTO match_data VALUES(%s, %d, %d, %s, %d)"""
+            dataTuple = ()
+            cursor.execute(sql_query, dataTuple)
+            connection.commit()
+
+            #Insert the match data
             print("Added to database...")
             return
 
@@ -128,5 +138,9 @@ class TFTData():
         responseJson = requests.get(url_request).json()
 
         return responseJson
+    
+    #Get the usable data to insert into the sql database
+    def get_sql_data(self, match_data):
+        
 #~~~~~~~~~~~~~~~~~~~
 
