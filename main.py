@@ -1,8 +1,9 @@
 #Runs the methods in order to generate results
 
 #~~~~~Libraries~~~~~
-from TFT_data import mysql_database
-from TFT_data import TFTData
+from TFT_data import *
+from tweet_bot import *
+from compose_tweet import *
 #~~~~~~~~~~~~~~~~~~~
 
 #~~~~~Global Variable~~~~~
@@ -14,6 +15,7 @@ USER_NAME = 'DotsXL'
 def main():
         database = mysql_database()
         riotAPI = TFTData()
+        twitter_bot = Twitter_Bot()
 
         #Connect to mysql data base
         connection = database.mysql_server_connect()
@@ -22,7 +24,10 @@ def main():
         puuid = riotAPI.get_puuid(API_KEY, USER_NAME)
         match_ids = riotAPI.get_match_ids(API_KEY, puuid)
 
-        print(match_ids)
+        #Authorize and prep the twitter bot
+        authorize = twitter_bot.authorize(CONSUMER_KEY, SECRET_CONSUMER_KEY)
+        authorize = twitter_bot.access_token(authorize, ACCESS_TOKEN, SECRET_ACCESS_TOKE)
+        api = twitter_bot.get_api(authorize)
 
         for i in range(len(match_ids)):
                 #Get match data 
@@ -33,7 +38,10 @@ def main():
                 if database.check_new_entry(match_ids[i], connection) :
                         database.new_entry(USER_NAME, puuid, match_ids[i], sql_data)
 
-        return
+                        tweet = 
+
+        
+
 #~~~~~~~~~~~~~~~~~~~
 
 main()

@@ -13,7 +13,7 @@ API_KEY = '?api_key=RGAPI-5c6959a1-3ab3-4542-ae9f-81376fc6eff5'
 USER_NAME = 'DotsXL'
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#~~~~~Functions~~~~~
+ #~~~~~Class'~~~~~
 class mysql_database():
     #Establish connection with MySQL database
     def mysql_server_connect(self):
@@ -172,4 +172,4 @@ class TFTData():
         
         return useful_data
 
-#~~~~~~~~~~~~~~~~~~~
+ #~~~~~~~~~~~~~~~~

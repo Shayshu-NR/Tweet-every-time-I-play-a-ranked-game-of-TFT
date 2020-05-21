@@ -6,13 +6,14 @@ import pandas as pd
 from twitter_keys import *
 #~~~~~~~~~~~~~~~~~~~~
  
+ #~~~~~Class'~~~~~
 class Twitter_Bot():
-    def authorize(self, consumer, comsumer_secret):
+    def authorize(self, consumer, consumer_secret):
         auth = tw.OAuthHandler(consumer, consumer_secret)
 
         return auth
     
-    def access_toke(self, auth, token, token_secret):
+    def access_token(self, auth, token, token_secret):
         auth.set_access_token(token, token_secret)
 
         return auth
@@ -26,3 +27,4 @@ class Twitter_Bot():
         api.update_status(status)
 
         return
+ #~~~~~~~~~~~~~~~~
