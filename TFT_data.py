@@ -9,7 +9,7 @@ import requests
 #~~~~~~~~~~~~~~~~~~~    
 
 #~~~~~Global Variable~~~~~
-API_KEY = '?api_key=RGAPI-5c6959a1-3ab3-4542-ae9f-81376fc6eff5'
+API_KEY = '?api_key=RGAPI-f921ee3e-eefd-4784-a2e2-8414272dcb0d'
 USER_NAME = 'DotsXL'
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -21,7 +21,7 @@ class mysql_database():
             connection = mysql.connector.connect(host='localhost',
                                 database ='sql_match_history',
                                 user ='root',
-                                password ='datalog')
+                                password ='mysql')
             
             if connection.is_connected():
                 print("Connected to database!")
@@ -85,13 +85,8 @@ class mysql_database():
             return False
     
     #Add a new entry to the mysql database
-    def new_entry(self, userName, puuid, match_id, match_data):
+    def new_entry(self, userName, puuid, match_id, match_data, connection):
         try:
-            connection = mysql.connector.connect(host='localhost',
-                                database='sql_match_history',
-                                user='root',
-                                password='datalog')
-
             cursor = connection.cursor()
 
             #Insert the match history data

@@ -16,10 +16,10 @@ CREATE TABLE Match_History (
 
 CREATE TABLE Match_Data (
   Match_ID varchar(14) NOT NULL,
-  End_Level tinyint(4) NOT NULL, 
-  Placement tinyint(4) NOT NULL, 
+  End_Level int(10) NOT NULL, 
+  Placement int(10) NOT NULL, 
   Primary_Trait varchar(25) NOT NULL, 
-  Total_Damage tinyint(10) NOT NULL,
+  Total_Damage int(255) NOT NULL,
   PRIMARY KEY (Match_ID),
   FOREIGN KEY (Match_ID) REFERENCES Match_History (Match_History_ID) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

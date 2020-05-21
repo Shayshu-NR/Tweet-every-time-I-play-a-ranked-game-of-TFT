@@ -4,12 +4,9 @@
 from TFT_data import *
 from tweet_bot import *
 from compose_tweet import *
-#~~~~~~~~~~~~~~~~~~~
+from twitter_keys import *
 
-#~~~~~Global Variable~~~~~
-API_KEY = '?api_key=RGAPI-5c6959a1-3ab3-4542-ae9f-81376fc6eff5'
-USER_NAME = 'DotsXL'
-#~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~
 
 #~~~~~Functions~~~~~
 def main():
@@ -29,19 +26,22 @@ def main():
         authorize = twitter_bot.access_token(authorize, ACCESS_TOKEN, SECRET_ACCESS_TOKE)
         api = twitter_bot.get_api(authorize)
 
-        for i in range(len(match_ids)):
+        for i in range(1):
                 #Get match data 
                 match_data = riotAPI.get_match_data(API_KEY, match_ids[i])
                 sql_data = riotAPI.get_sql_data(match_data, puuid)
 
+                print(sql_data)
+
                 #Check if the data is already in the database
                 if database.check_new_entry(match_ids[i], connection) :
-                        database.new_entry(USER_NAME, puuid, match_ids[i], sql_data)
+                        database.new_entry(USER_NAME, puuid, match_ids[i], sql_data, connection)
 
-                        tweet = 
+                        tweet = compose_tweet(sql_data[0], sql_data[1], sql_data[2], sql_data[3])
 
-        
+                        api.update_status(tweet)
 
+        database.mysql_server_close(connection)
 #~~~~~~~~~~~~~~~~~~~
 
 main()

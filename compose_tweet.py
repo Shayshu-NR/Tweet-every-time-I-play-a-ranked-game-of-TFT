@@ -42,13 +42,25 @@ def compose_tweet(level, placement, trait, damage):
 
     if(int(placement) > 4):
         
-        tweet = starting_phrases_bad[random.randint(0, 15)] + "I just placed " + placement + "th. "
-        tweet = tweet + "I ended up at level " + level + ". "
-        tweet = tweet + "My comp was mostly " + trait + " this game :s. "
-        tweet = tweet + "In total I did " + damage + " damage"
+        tweet = starting_phrases_bad[random.randint(0, 15)] + "I just placed " + str(placement) + "th, "
+        tweet = tweet + "I ended up at level " + str(level) + ". "
+        tweet = tweet + "My comp was mostly " + trait + " this game. "
+        tweet = tweet + "In total I did " + str(damage) + " damage"
 
         return tweet
     else:
+        tweet = starting_phrases_good[random.randint(0, 15)] + "I just placed " + str(placement)
+
+        if(int(placement) == 1):
+            tweet = tweet + "st, "
+        elif(int(placement) == 2):
+            tweet = tweet + "nd, "
+        else:
+            tweet = tweet + "rd, "
+        
+        tweet = tweet + "I ended up at level " + str(level) + ". "
+        tweet = tweet + "My comp was mostly " + trait + " this game. "
+        tweet = tweet + "In total I did " + str(damage) + " damage"   
 
         return tweet
 #~~~~~~~~~~~~~~~~~~~
