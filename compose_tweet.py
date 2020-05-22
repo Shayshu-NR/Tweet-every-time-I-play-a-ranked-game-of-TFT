@@ -9,7 +9,7 @@ def compose_tweet(level, placement, trait, damage):
     starting_phrases_bad = ["Oh boy this was a rough one, ",
                             "Welp another day another L, ",
                             "Ah jeez Rick I'm pretty bad, ", 
-                            "LMAOOOOO GUESS WHO'S A CLOWN??",
+                            "LMAOOO GUESS WHO'S A CLOWN??",
                             "Press F in chat pls, ",
                             "Ahaha fuuuuuuuuuuuuu, ",
                             "Was I dropped on my head as a child? Because ",
@@ -20,14 +20,14 @@ def compose_tweet(level, placement, trait, damage):
                             "End my suffering, ",
                             "I am stupid, ",
                             "*Megolovania song* ",
-                            "My mom just called me a n00b cuz "]
+                            "Mom just called me a n00b cuz "]
 
     starting_phrases_good = ["WOWZA what a pleasant surprise, ",
                              "It is I decent gamer2000 here, ",
                              "*whips and nae-naes* ",
                              "TSM SIGN ME ALREADY ",
                              "Heck yea, ",
-                             "I AM LITTERYALLY GODDDDD, ",
+                             "I AM LITTERYALLY GODDD, ",
                              "Look at me now MOM, ",
                              "noice, ",
                              "Would ya look at that ",
@@ -35,7 +35,7 @@ def compose_tweet(level, placement, trait, damage):
                              "Wahoo ",
                              "Ok I actually did aight, ",
                              "I'm basically Diamond 1, ",
-                             "yaaa bbbbbooiiiiiiiiiiiiiii... ",
+                             "yaaa bbbbbooiiiiiiiii... ",
                              "They call me salad cuz I be dressin, "]
 
     tweet = ""
@@ -63,4 +63,10 @@ def compose_tweet(level, placement, trait, damage):
         tweet = tweet + "In total I did " + str(damage) + " damage"   
 
         return tweet
+
+def get_relavent_photo(trait):
+    file_path = ""
+
+    return file_path
+
 #~~~~~~~~~~~~~~~~~~~

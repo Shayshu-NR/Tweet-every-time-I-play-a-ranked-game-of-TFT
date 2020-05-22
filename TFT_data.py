@@ -158,7 +158,8 @@ class TFTData():
                         primary_trait = user_data['traits'][j]['name']
                         num_units = user_data['traits'][j]['num_units']
                 
-                useful_data[2] = primary_trait
+                if("Set3_" in primary_trait):
+                    useful_data[2] = primary_trait[5:]
 
                 #Store total damage
                 useful_data[3] = (user_data['total_damage_to_players'])
