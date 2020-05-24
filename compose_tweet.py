@@ -67,6 +67,18 @@ def compose_tweet(level, placement, trait, damage):
 def get_relavent_photo(trait):
     file_path = ""
 
+    cursed_images = ["deepfried_celeste.png",
+                    "deepfried_chrono.png",
+                    "deepfried_cybernetic.png",
+                    "deepfried_darkstar.png",
+                    "deepfried_mechpilot.png",
+                    "deepfried_rebel.png",
+                    "deepfried_spacepirates.png",
+                    "deepfried_starguardian.png",
+                    "deepfried_valkyrie.png"
+
+                    ]
+
     return file_path
 
 #~~~~~~~~~~~~~~~~~~~
