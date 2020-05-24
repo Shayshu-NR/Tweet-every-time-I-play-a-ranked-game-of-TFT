@@ -42,21 +42,23 @@ def compose_tweet(level, placement, trait, damage):
 
     if(int(placement) > 4):
         
-        tweet = starting_phrases_bad[random.randint(0, 15)] + "I just placed " + str(placement) + "th, "
+        tweet = starting_phrases_bad[random.randint(0, 14)] + "I just placed " + str(placement) + "th, "
         tweet = tweet + "I ended up at level " + str(level) + ". "
         tweet = tweet + "My comp was mostly " + trait + " this game. "
         tweet = tweet + "In total I did " + str(damage) + " damage"
 
         return tweet
     else:
-        tweet = starting_phrases_good[random.randint(0, 15)] + "I just placed " + str(placement)
+        tweet = starting_phrases_good[random.randint(0, 14)] + "I just placed " + str(placement)
 
         if(int(placement) == 1):
             tweet = tweet + "st, "
         elif(int(placement) == 2):
             tweet = tweet + "nd, "
-        else:
+        elif(int(placement) == 3):
             tweet = tweet + "rd, "
+        else:
+            tweet = tweet + "th, "
         
         tweet = tweet + "I ended up at level " + str(level) + ". "
         tweet = tweet + "My comp was mostly " + trait + " this game. "
@@ -81,5 +83,4 @@ def get_relavent_photo(trait):
             return "Cursed_tft_images/" + cursed_images[i] 
 
     return "Cursed_tft_images/deepfried_1590022313617.png"
-
 #~~~~~~~~~~~~~~~~~~~

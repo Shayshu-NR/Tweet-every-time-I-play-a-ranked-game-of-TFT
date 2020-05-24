@@ -27,7 +27,7 @@ def main():
                 puuid = riotAPI.get_puuid(API_KEY, USER_NAME)
                 match_ids = riotAPI.get_match_ids(API_KEY, puuid)
 
-                for i in range(len(match_ids)):
+                for i in range(1):
                         #Get match data 
                         match_data = riotAPI.get_match_data(API_KEY, match_ids[i])
                         sql_data = riotAPI.get_sql_data(match_data, puuid)

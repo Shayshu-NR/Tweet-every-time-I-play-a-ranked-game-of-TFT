@@ -9,7 +9,7 @@ import requests
 #~~~~~~~~~~~~~~~~~~~    
 
 #~~~~~Global Variable~~~~~
-API_KEY = '?api_key=RGAPI-f921ee3e-eefd-4784-a2e2-8414272dcb0d'
+API_KEY = '?api_key=RGAPI-b68c0bea-3396-40a4-989e-8de7312e0e6b'
 USER_NAME = 'DotsXL'
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -154,12 +154,14 @@ class TFTData():
                 primary_trait = 'none'
                 num_units = 0
                 for j in range(len(user_data['traits'])):
-                    if user_data['traits'][j]['num_units'] > num_units:
+                    if int(user_data['traits'][j]['num_units']) > num_units:
                         primary_trait = user_data['traits'][j]['name']
-                        num_units = user_data['traits'][j]['num_units']
+                        num_units = int(user_data['traits'][j]['num_units'])
                 
                 if("Set3_" in primary_trait):
                     useful_data[2] = primary_trait[5:]
+                else:
+                    useful_data[2] = primary_trait
 
                 #Store total damage
                 useful_data[3] = (user_data['total_damage_to_players'])
