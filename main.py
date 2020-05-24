@@ -38,9 +38,9 @@ def main():
                         if database.check_new_entry(match_ids[i], connection) :
                                 database.new_entry(USER_NAME, puuid, match_ids[i], sql_data, connection)
 
-                                # tweet = compose_tweet(sql_data[0], sql_data[1], sql_data[2], sql_data[3])
+                                tweet = compose_tweet(sql_data[0], sql_data[1], sql_data[2], sql_data[3])
 
-                                # api.update_with_media('Featherknight_Pengu_Tier_2.png',status = tweet)
+                                api.update_with_media(get_relavent_photo(sql_data[2]), status = tweet)
 
                 #Sleeping so that I don't overwhelm the twitter or riot api
                 sleep(300)
